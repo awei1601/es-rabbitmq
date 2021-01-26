@@ -1,9 +1,9 @@
 {
     "name": "awei1601/es-rabbitmq",
     "type": "library",
-    "description": "easyswoole rabbitmq pool",
-    "keywords" : ["swoole", "easyswoole", "rabbitmq","pool"],
-    "license" : "Apache-2.0",
+    "description": "easyswoole rabbitmq",
+    "keywords" : ["easyswoole", "rabbitmq"],
+    "license": "MIT",
     "authors": [
         {
             "name": "awei1601",
@@ -16,9 +16,8 @@
         }
     },
     "require": {
-        "easyswoole/component": "^2.0",
-        "easyswoole/spl": "^1.1",
-        "easyswoole/pool": "^1.0",
-        "php-amqplib/php-amqplib": "^2.11"
+        "php-amqplib/php-amqplib": "^2.12",
+        "easyswoole/queue": ">=2.0",
+        "easyswoole/component": ">=2.0"
     }
 }
