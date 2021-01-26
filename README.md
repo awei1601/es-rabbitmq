@@ -82,22 +82,23 @@ class EasySwooleEvent implements Event
 
     public static function mainServerCreate(EventRegister $register)
     {
-         $driver = new RabbitMqQueueDriver(
-              Config::getInstance()->getConf('rabbitmq.host'),
-              Config::getInstance()->getConf('rabbitmq.port'),
-              Config::getInstance()->getConf('rabbitmq.user'),
-              Config::getInstance()->getConf('rabbitmq.password'),
-              Config::getInstance()->getConf('rabbitmq.vhost')
-         );
-         MqQueue::getInstance($driver);
-         $processConfig= new \EasySwoole\Component\Process\Config();
-         $processConfig->setProcessGroup('RabbitMq');//设置进程组
-         $processConfig->setRedirectStdinStdout(false);//是否重定向标准io
-         $processConfig->setPipeType($processConfig::PIPE_TYPE_SOCK_DGRAM);//设置管道类型
-         $processConfig->setEnableCoroutine(true);//是否自动开启协程
-         $processConfig->setMaxExitWaitTime(3);//最大退出等待时间
-         $processConfig->setProcessName('RabbitMqProcess');
-         \EasySwoole\EasySwoole\ServerManager::getInstance()->addProcess(new MqQueueProcess($processConfig));
+         // rabbitMq 注册
+        $rabbitmq = new RabbitMqQueueDriver(
+            Config::getInstance()->getConf('rabbitmq.host'),
+            Config::getInstance()->getConf('rabbitmq.port'),
+            Config::getInstance()->getConf('rabbitmq.user'),
+            Config::getInstance()->getConf('rabbitmq.password'),
+            Config::getInstance()->getConf('rabbitmq.vhost')
+        );
+        MqQueue::getInstance($rabbitmq);
+        $rabbitProcess = new \EasySwoole\Component\Process\Config();
+        $rabbitProcess->setProcessGroup('RabbitMq');//设置进程组
+        $rabbitProcess->setRedirectStdinStdout(false);//是否重定向标准io
+        $rabbitProcess->setPipeType($rabbitProcess::PIPE_TYPE_SOCK_DGRAM);//设置管道类型
+        $rabbitProcess->setEnableCoroutine(true);//是否自动开启协程
+        $rabbitProcess->setMaxExitWaitTime(3);//最大退出等待时间
+        $rabbitProcess->setProcessName('RabbitMqProcess');
+        \EasySwoole\Component\Process\Manager::getInstance()->addProcess(new RabbitMQProcess($rabbitProcess));
     }
 }
 ```
