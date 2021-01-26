@@ -1,0 +1,24 @@
+{
+    "name": "awei1601/es-rabbitmq",
+    "type": "library",
+    "description": "easyswoole rabbitmq pool",
+    "keywords" : ["swoole", "easyswoole", "rabbitmq","pool"],
+    "license" : "Apache-2.0",
+    "authors": [
+        {
+            "name": "awei1601",
+            "email": "mf19860424@sohu.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "EasySwoole\\RabbitMQPool\\": "src/"
+        }
+    },
+    "require": {
+        "easyswoole/component": "^2.0",
+        "easyswoole/spl": "^1.1",
+        "easyswoole/pool": "^1.0",
+        "php-amqplib/php-amqplib": "^2.11"
+    }
+}
